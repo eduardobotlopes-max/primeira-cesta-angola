@@ -1,6 +1,6 @@
 # Sua Primeira Cesta Vendida — Angola
 
-Quiz estático com 17 etapas, estrutura HTML e estilos extraídos da referência e textos adaptados para Angola. Preço da oferta: **4.990 Kz**.
+Quiz estático com cinco perguntas de diagnóstico, ecrã de análise e oferta final. A copy está adaptada para Angola. Preço da oferta: **4.990 Kz**.
 
 ## Executar
 
@@ -12,12 +12,12 @@ Importe este repositório. Preset: **Other**. Sem comando de build; pasta de sa�
 
 ## Checkout
 
-O checkout ClickPay está configurado em `CHECKOUT_URL` no final de `index.html`:
+O checkout ClickPay está configurado em `CHECKOUT_URL` no início de `quiz.js`:
 
 https://pay.clickpayon.com/94f51905-70c4-4a57-988a-28e39dec83f0
 
-Todos os botões de compra usam este endereço e encaminham os parâmetros UTM da página.
+O botão de compra usa este endereço e encaminha os parâmetros UTM da página.
 
 ## Ficheiros
 
-As sete imagens estão em WebP, juntamente com a fonte e as folhas de estilo originais. Não dependem dos servidores de imagens da referência. Os relatos brasileiros foram conservados como imagens originais e identificados como relatos do Brasil.
+`index.html`, `quiz.css` e `quiz.js` formam a experiência atual. A logo, a imagem de abertura, o selo de garantia e a fonte estão guardados neste repositório. Os ficheiros de imagem e estilo da versão anterior permanecem no histórico do projeto.
