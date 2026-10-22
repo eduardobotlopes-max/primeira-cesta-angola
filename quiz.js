@@ -146,6 +146,22 @@ const questions = [
   }
 ];
 
+// Troca o ficheiro src de cada espaço para actualizar as imagens do quiz.
+const visualSlots = {
+  3: {
+    src: '/quiz-planeamento.png',
+    alt: 'Mulher a planear os materiais para montar uma cesta de presente',
+    title: 'Primeiro, um plano simples',
+    detail: 'Escolher os materiais e conhecer os custos ajuda a dar o primeiro passo com mais clareza.'
+  },
+  7: {
+    src: '/quiz-montagem.png',
+    alt: 'Mulher a terminar uma cesta de presente com um laço',
+    title: 'Depois, a cesta ganha forma',
+    detail: 'Com um modelo para seguir, podes praticar a montagem e preparar fotografias para divulgar.'
+  }
+};
+
 const app = document.getElementById('app');
 const answers = [];
 let screen = 'intro';
@@ -159,7 +175,7 @@ function escapeHtml(value) {
 }
 
 function topbar(percent, backLabel) {
-  return `<div class="topbar"><button class="back" type="button" aria-label="${escapeHtml(backLabel)}">←</button><div class="progress" role="progressbar" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do quiz"><span style="width:${percent}%"></span></div></div>`;
+  return `<div class="topbar"><button class="back" type="button" aria-label="${escapeHtml(backLabel)}">←</button><div class="progress" role="progressbar" aria-valuenow="${percent}" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do quiz"><span style="width:${percent}%"></span></div><span class="progress-value">${percent}%</span></div>`;
 }
 
 function renderIntro() {
@@ -169,8 +185,19 @@ function renderIntro() {
 
 function renderQuestion() {
   const question = questions[questionIndex];
-  const percent = Math.round((questionIndex / questions.length) * 100);
-  app.innerHTML = `${topbar(percent, 'Voltar')}<p class="counter">Pergunta ${questionIndex + 1} de ${questions.length}</p><h1>${escapeHtml(question.title)}</h1><div class="choices">${question.options.map((option, index) => `<button class="choice" type="button" data-answer="${index}">${escapeHtml(option)}</button>`).join('')}</div><p class="answer-feedback" role="status" hidden></p>`;
+  const percent = Math.round(((questionIndex + 1) / questions.length) * 100);
+  const visual = visualSlots[questionIndex];
+  const visualHtml = visual ? `<figure class="visual-card"><button class="visual-toggle" type="button" aria-expanded="false" aria-controls="visual-note-${questionIndex}"><img src="${visual.src}" alt="${escapeHtml(visual.alt)}" width="1536" height="1024" loading="lazy"><span class="visual-overlay"><strong>${escapeHtml(visual.title)}</strong><span>Ver a ideia +</span></span></button><figcaption class="visual-note" id="visual-note-${questionIndex}" hidden>${escapeHtml(visual.detail)}</figcaption></figure>` : '';
+  app.innerHTML = `${topbar(percent, 'Voltar')}<p class="counter">Pergunta ${questionIndex + 1} de ${questions.length}</p>${visualHtml}<h1>${escapeHtml(question.title)}</h1><div class="choices">${question.options.map((option, index) => `<button class="choice" type="button" data-answer="${index}">${escapeHtml(option)}</button>`).join('')}</div><p class="answer-feedback" role="status" hidden></p>`;
+  if (visual) {
+    const toggle = app.querySelector('.visual-toggle');
+    const note = app.querySelector('.visual-note');
+    toggle.addEventListener('click', () => {
+      note.hidden = !note.hidden;
+      toggle.setAttribute('aria-expanded', String(!note.hidden));
+      toggle.querySelector('.visual-overlay span').textContent = note.hidden ? 'Ver a ideia +' : 'Fechar −';
+    });
+  }
   app.querySelector('.back').addEventListener('click', () => {
     if (questionIndex === 0) screen = 'intro'; else questionIndex -= 1;
     render();
