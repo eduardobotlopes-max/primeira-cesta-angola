@@ -6,6 +6,11 @@ const questions = [
       'Nunca vendi e quero começar do zero.',
       'Já tentei vender, mas ainda não consegui ter vendas regulares.',
       'Já vendo e quero organizar melhor os preços e a divulgação.'
+    ],
+    feedback: [
+      'O teu primeiro passo é escolher um modelo simples e preparar a primeira cesta.',
+      'Já tens alguma experiência. Vale perceber onde o processo de venda está a falhar.',
+      'Tens uma base. Organizar preços e divulgação pode tornar o trabalho mais consistente.'
     ]
   },
   {
@@ -14,6 +19,11 @@ const questions = [
       'Não sei que materiais comprar nem como escolher fornecedores.',
       'Tenho receio de gastar dinheiro e não conseguir vender.',
       'Não sei como divulgar as cestas e conversar com possíveis clientes.'
+    ],
+    feedback: [
+      'Começa com uma lista de materiais para uma cesta e compara preços antes de comprar.',
+      'Um orçamento pequeno e um preço calculado antes da compra ajudam a decidir com mais segurança.',
+      'Fotografias claras e mensagens simples podem ajudar a apresentar as tuas cestas.'
     ]
   },
   {
@@ -22,6 +32,11 @@ const questions = [
       'Vou continuar a adiar a primeira venda.',
       'Posso gastar em materiais sem saber quanto preciso cobrar.',
       'Vou continuar a vender de forma irregular.'
+    ],
+    feedback: [
+      'Definir uma pequena tarefa para esta semana ajuda a sair do adiamento.',
+      'Anotar o custo de cada material é o primeiro passo para definir um preço.',
+      'Um processo repetível de montagem e divulgação pode dar mais organização às vendas.'
     ]
   },
   {
@@ -30,6 +45,11 @@ const questions = [
       'Querer contribuir mais para o rendimento da casa e não saber por onde começar.',
       'Sentir insegurança ao investir tempo ou dinheiro numa ideia.',
       'Ter vontade de criar algo meu, mas continuar sem um método.'
+    ],
+    feedback: [
+      'Um plano dividido em tarefas pequenas torna mais claro por onde começar.',
+      'Podes testar uma cesta com um orçamento definido antes de fazer compras maiores.',
+      'O próximo passo é transformar essa vontade numa sequência simples de ações.'
     ]
   },
   {
@@ -38,6 +58,90 @@ const questions = [
       'Uma lista de compras e vídeos para montar as primeiras cestas.',
       'Um jeito simples de calcular preços antes de vender.',
       'Guiões de WhatsApp e um plano para divulgar as cestas.'
+    ],
+    feedback: [
+      'Ter os materiais organizados e ver a montagem passo a passo pode facilitar o início.',
+      'Definir o preço a partir dos custos ajuda a perceber a margem de cada cesta.',
+      'Um guião de mensagem pode ajudar a apresentar a oferta com mais clareza.'
+    ]
+  },
+  {
+    title: 'O que mais queres alcançar com as cestas?',
+    options: [
+      'Ter um rendimento extra sem sair de casa.',
+      'Trabalhar por conta própria no futuro.',
+      'Organizar melhor o negócio que já tenho.',
+      'Aprender primeiro e decidir depois.'
+    ],
+    feedback: [
+      'Começar com uma cesta e testar a procura pode ajudar a explorar uma renda extra.',
+      'Construir um negócio próprio leva tempo; a primeira venda é um passo concreto.',
+      'O foco pode ser registar custos, preços e pedidos para organizar o que já vendes.',
+      'Aprender o processo antes de investir é uma forma válida de começar.'
+    ]
+  },
+  {
+    title: 'Quanto tempo por dia consegues dedicar às cestas?',
+    options: [
+      'Menos de 1 hora.',
+      'Entre 1 e 2 horas.',
+      'Entre 2 e 4 horas.',
+      'Mais de 4 horas.'
+    ],
+    feedback: [
+      'Com pouco tempo, escolhe uma tarefa por dia: comprar, montar, fotografar ou divulgar.',
+      'Uma ou duas horas podem ser divididas entre preparação e divulgação.',
+      'Podes reservar blocos de tempo para montar, fotografar e responder a interessados.',
+      'Com mais tempo disponível, vale criar uma rotina e acompanhar os resultados.'
+    ]
+  },
+  {
+    title: 'Qual é a tua experiência com cestas de presente?',
+    options: [
+      'Nunca montei uma cesta.',
+      'Já montei para família ou amigos, mas nunca vendi.',
+      'Já vendi algumas cestas sem um processo definido.',
+      'Vendo com frequência e quero melhorar.'
+    ],
+    feedback: [
+      'Um modelo simples e uma lista de materiais podem orientar a primeira montagem.',
+      'Já conheces a montagem. O próximo passo é calcular um preço e apresentar a cesta.',
+      'Registar materiais, tempo e preço pode tornar cada venda mais fácil de repetir.',
+      'O teu foco pode ser rever custos, apresentação e divulgação das cestas.'
+    ]
+  },
+  {
+    title: 'Qual é o teu maior receio ao começar ou crescer?',
+    options: [
+      'Investir e não conseguir vender.',
+      'Não montar cestas bonitas.',
+      'Não conseguir conciliar com a rotina.',
+      'Cobrar um preço errado.',
+      'Encontrar muita concorrência.'
+    ],
+    feedback: [
+      'Testar um modelo com orçamento definido ajuda a limitar o investimento inicial.',
+      'A prática com um modelo guiado pode ajudar a melhorar a montagem e a apresentação.',
+      'Divide o processo em tarefas curtas que caibam na tua rotina.',
+      'Soma materiais e outros custos antes de decidir quanto cobrar.',
+      'Uma apresentação clara e um bom atendimento ajudam a mostrar o valor da tua cesta.'
+    ]
+  },
+  {
+    title: 'Quanto gostarias de faturar por mês com cestas nos próximos 3 meses?',
+    options: [
+      'Até 50.000 Kz.',
+      'Entre 50.000 Kz e 150.000 Kz.',
+      'Entre 150.000 Kz e 300.000 Kz.',
+      'Mais de 300.000 Kz.',
+      'Ainda não sei; quero entender o potencial primeiro.'
+    ],
+    feedback: [
+      'É uma meta inicial. Calcula quantas cestas precisarias vender e qual seria a margem.',
+      'Divide a meta pelo valor de venda de cada cesta e considera os custos envolvidos.',
+      'Para avaliar essa meta, estima a quantidade de pedidos, os custos e o tempo necessário.',
+      'Uma meta alta exige testar a procura e acompanhar margem, capacidade e vendas reais.',
+      'Começa por conhecer custos e preços; depois define uma meta baseada nas primeiras vendas.'
     ]
   }
 ];
@@ -48,6 +152,7 @@ let screen = 'intro';
 let questionIndex = 0;
 let loadingTimer;
 let loadingMessageTimer;
+let answerTimer;
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -58,14 +163,14 @@ function topbar(percent, backLabel) {
 }
 
 function renderIntro() {
-  app.innerHTML = `<div class="intro"><img class="brand" src="/4cc051cd6c3e688d.webp" alt="Sua Primeira Cesta Vendida" width="134" height="134"><img class="hero" src="/transformacao-cestas.png" alt="A mesma mulher antes, com poucas moedas, e depois, com dinheiro e uma cesta de presentes" width="1774" height="887"><p class="eyebrow">Quiz rápido</p><h1>Descobre o teu perfil para vender cestas de presente.</h1><p class="subhead">Responde a 5 perguntas e vê qual é o teu próximo passo para começar em casa.</p><button class="button" id="start" type="button">COMEÇAR O QUIZ</button><p class="note">Leva cerca de 1 minuto.</p></div>`;
+  app.innerHTML = `<div class="intro"><img class="brand" src="/4cc051cd6c3e688d.webp" alt="Sua Primeira Cesta Vendida" width="134" height="134"><img class="hero" src="/transformacao-cestas.png" alt="A mesma mulher antes, com poucas moedas, e depois, com dinheiro e uma cesta de presentes" width="1774" height="887"><p class="eyebrow">Quiz rápido</p><h1>Descobre o teu perfil para vender cestas de presente.</h1><p class="subhead">Responde a 10 perguntas e recebe um próximo passo de acordo com as tuas respostas.</p><button class="button" id="start" type="button">COMEÇAR O QUIZ</button><p class="note">Leva cerca de 2 minutos.</p></div>`;
   document.getElementById('start').addEventListener('click', () => {screen = 'question'; questionIndex = 0; render();});
 }
 
 function renderQuestion() {
   const question = questions[questionIndex];
   const percent = Math.round((questionIndex / questions.length) * 100);
-  app.innerHTML = `${topbar(percent, 'Voltar')}<p class="counter">Pergunta ${questionIndex + 1} de ${questions.length}</p><h1>${escapeHtml(question.title)}</h1><div class="choices">${question.options.map((option, index) => `<button class="choice" type="button" data-answer="${index}">${escapeHtml(option)}</button>`).join('')}</div>`;
+  app.innerHTML = `${topbar(percent, 'Voltar')}<p class="counter">Pergunta ${questionIndex + 1} de ${questions.length}</p><h1>${escapeHtml(question.title)}</h1><div class="choices">${question.options.map((option, index) => `<button class="choice" type="button" data-answer="${index}">${escapeHtml(option)}</button>`).join('')}</div><p class="answer-feedback" role="status" hidden></p>`;
   app.querySelector('.back').addEventListener('click', () => {
     if (questionIndex === 0) screen = 'intro'; else questionIndex -= 1;
     render();
@@ -74,11 +179,14 @@ function renderQuestion() {
     answers[questionIndex] = Number(button.dataset.answer);
     app.querySelectorAll('.choice').forEach(choice => choice.disabled = true);
     button.classList.add('selected');
-    window.setTimeout(() => {
+    const feedback = app.querySelector('.answer-feedback');
+    feedback.textContent = question.feedback[answers[questionIndex]];
+    feedback.hidden = false;
+    answerTimer = window.setTimeout(() => {
       if (questionIndex === questions.length - 1) screen = 'loading';
       else questionIndex += 1;
       render();
-    }, 300);
+    }, 1300);
   }));
 }
 
@@ -110,7 +218,8 @@ function checkout() {
 }
 
 function renderResult() {
-  app.innerHTML = `<div class="result">${topbar(100, 'Voltar à última pergunta')}<div class="diagnosis"><p class="eyebrow">O teu diagnóstico está pronto</p><h1>Já tens um ponto de partida.</h1><p>${escapeHtml(diagnosis())} O curso Sua Primeira Cesta Vendida mostra os passos para transformar essa intenção num plano de ação.</p></div><section class="section" aria-labelledby="plan-title"><h2 id="plan-title">Um plano simples para começar</h2><div class="steps"><div class="step"><b>1</b><span>Escolhe os materiais e organiza o teu orçamento.</span></div><div class="step"><b>2</b><span>Monta uma das 3 cestas mostradas nas aulas.</span></div><div class="step"><b>3</b><span>Define o preço, fotografa e divulga pelo WhatsApp.</span></div></div></section><section class="section offer" aria-labelledby="offer-title"><p class="eyebrow">Acesso ao curso</p><h2 id="offer-title">Sua Primeira Cesta Vendida | Angola</h2><p class="price">4.990 <small>Kz</small></p><p class="subhead">Pagamento único. Sem mensalidade.</p><ul class="features"><li>5 passos em vídeo para começar</li><li>Montagem de 3 modelos de cestas</li><li>Orientação para definir preços e divulgar</li><li>Lista de compras, guiões de WhatsApp e plano de 7 dias</li></ul><button class="button buy" type="button">QUERO COMEÇAR AGORA</button><p class="note">Acesso após a confirmação do pagamento.</p></section><section class="section guarantee" aria-label="Garantia de 7 dias"><img src="/garantia-7-dias.jpg" alt="Selo de garantia de 7 dias" width="84" height="84" loading="lazy"><div><h2>7 dias de garantia</h2><p>Experimenta o curso. Se não for para ti, pede o reembolso de 100% do valor dentro de 7 dias.</p></div></section><section class="section faq" aria-labelledby="faq-title"><h2 id="faq-title">Ainda tens dúvidas?</h2><details><summary>Preciso de experiência?</summary><p>Não. As aulas mostram como começar do zero e montar as cestas passo a passo.</p></details><details><summary>Posso acompanhar pelo telemóvel?</summary><p>Sim. Podes assistir às aulas ao teu ritmo no telemóvel ou computador.</p></details><details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, recebes acesso às aulas na área de membros.</p></details></section><p class="footer">© 2026 · Sua Primeira Cesta Vendida</p></div>`;
+  const insights = questions.map((question, index) => `<div class="insight"><b>${index + 1}. ${escapeHtml(question.title)}</b><p>${escapeHtml(question.feedback[answers[index]])}</p></div>`).join('');
+  app.innerHTML = `<div class="result">${topbar(100, 'Voltar à última pergunta')}<div class="diagnosis"><p class="eyebrow">O teu diagnóstico está pronto</p><h1>Já tens um ponto de partida.</h1><p>${escapeHtml(diagnosis())} O curso Sua Primeira Cesta Vendida mostra os passos para transformar essa intenção num plano de ação.</p></div><section class="section" aria-labelledby="plan-title"><h2 id="plan-title">Um plano simples para começar</h2><div class="steps"><div class="step"><b>1</b><span>Escolhe os materiais e organiza o teu orçamento.</span></div><div class="step"><b>2</b><span>Monta uma das 3 cestas mostradas nas aulas.</span></div><div class="step"><b>3</b><span>Define o preço, fotografa e divulga pelo WhatsApp.</span></div></div></section><section class="section offer" aria-labelledby="offer-title"><p class="eyebrow">Acesso ao curso</p><h2 id="offer-title">Sua Primeira Cesta Vendida | Angola</h2><p class="price">4.990 <small>Kz</small></p><p class="subhead">Pagamento único. Sem mensalidade.</p><ul class="features"><li>5 passos em vídeo para começar</li><li>Montagem de 3 modelos de cestas</li><li>Orientação para definir preços e divulgar</li><li>Lista de compras, guiões de WhatsApp e plano de 7 dias</li></ul><button class="button buy" type="button">QUERO COMEÇAR AGORA</button><p class="note">Acesso após a confirmação do pagamento.</p></section><section class="section guarantee" aria-label="Garantia de 7 dias"><img src="/garantia-7-dias-sem-fundo.png" alt="Selo de garantia de 7 dias" width="100" height="100" loading="lazy"><div><h2>7 dias de garantia</h2><p>Experimenta o curso. Se não for para ti, pede o reembolso de 100% do valor dentro de 7 dias.</p></div></section><section class="section insights" aria-labelledby="insights-title"><h2 id="insights-title">O que as tuas 10 respostas mostram</h2>${insights}</section><section class="section faq" aria-labelledby="faq-title"><h2 id="faq-title">Ainda tens dúvidas?</h2><details><summary>Preciso de experiência?</summary><p>Não. As aulas mostram como começar do zero e montar as cestas passo a passo.</p></details><details><summary>Posso acompanhar pelo telemóvel?</summary><p>Sim. Podes assistir às aulas ao teu ritmo no telemóvel ou computador.</p></details><details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, recebes acesso às aulas na área de membros.</p></details></section><p class="footer">© 2026 · Sua Primeira Cesta Vendida</p></div>`;
   app.querySelector('.back').addEventListener('click', () => {questionIndex = questions.length - 1; screen = 'question'; render();});
   app.querySelector('.buy').addEventListener('click', checkout);
 }
@@ -118,6 +227,7 @@ function renderResult() {
 function render() {
   window.clearTimeout(loadingTimer);
   window.clearInterval(loadingMessageTimer);
+  window.clearTimeout(answerTimer);
   window.scrollTo(0, 0);
   if (screen === 'intro') renderIntro();
   else if (screen === 'question') renderQuestion();

@@ -5,6 +5,8 @@ body{margin:0}
 button,a{font:inherit}
 button{cursor:pointer}
 .app{max-width:500px;min-height:100svh;margin:auto;padding:20px 18px 42px}
+.app>*{animation:screen-in .3s ease both}
+@keyframes screen-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .brand{display:block;width:134px;height:134px;object-fit:contain;margin:0 auto 12px}
 .hero{display:block;width:100%;height:auto;border-radius:18px;margin:0 auto 20px}
 .intro{text-align:center}
@@ -26,6 +28,7 @@ p{margin:0}
 .choice{width:100%;min-height:66px;padding:16px;border:1px solid #e0e3e7;border-radius:15px;background:#fff;color:#17202c;text-align:left;font-weight:650;box-shadow:0 5px 15px #17202c0a;transition:border-color .16s,background .16s,transform .16s}
 .choice:hover,.choice.selected{border-color:#ff9500;background:#fff8ed;transform:translateY(-1px)}
 .choice:disabled{cursor:default}
+.answer-feedback{margin-top:18px;padding:14px 16px;border-radius:14px;background:#fff8ed;border:1px solid #ffdfad;color:#6e4207;font-size:14px;font-weight:650}
 .loading{text-align:center;padding-top:28vh}
 .spinner{width:52px;height:52px;margin:0 auto 22px;border:5px solid #ffedd1;border-top-color:#ff9500;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -47,9 +50,14 @@ p{margin:0}
 .features li{display:flex;gap:9px;align-items:flex-start;font-size:14px}
 .features li:before{content:'✓';color:#b65f00;font-weight:900}
 .guarantee{display:flex;align-items:center;gap:14px;padding:15px;border:1px solid #eee;border-radius:16px}
-.guarantee img{display:block;width:84px;height:84px;flex:0 0 84px;object-fit:contain;border-radius:50%}
+.guarantee img{display:block;width:100px;height:100px;flex:0 0 100px;object-fit:contain;filter:drop-shadow(0 3px 4px #17202c22)}
 .guarantee h2{font-size:16px;margin-bottom:4px}
 .guarantee p{font-size:13px;color:#67717b}
+.insights{display:grid;gap:10px}
+.insights h2{margin-bottom:4px}
+.insight{padding:13px 14px;border:1px solid #eee;border-radius:13px}
+.insight b{display:block;font-size:13px;line-height:1.4}
+.insight p{margin-top:5px;color:#67717b;font-size:13px}
 .faq details{padding:14px 0;border-bottom:1px solid #eee}
 .faq summary{cursor:pointer;font-weight:650;font-size:14px}
 .faq details p{margin-top:9px;color:#67717b;font-size:13px}
