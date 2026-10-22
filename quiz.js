@@ -149,13 +149,13 @@ const questions = [
 // Troca o ficheiro src de cada espaço para actualizar as imagens do quiz.
 const visualSlots = {
   3: {
-    src: '/quiz-planeamento.png',
+    src: '/quiz-planeamento.webp',
     alt: 'Mulher a planear os materiais para montar uma cesta de presente',
     title: 'Primeiro, um plano simples',
     detail: 'Escolher os materiais e conhecer os custos ajuda a dar o primeiro passo com mais clareza.'
   },
   7: {
-    src: '/quiz-montagem.png',
+    src: '/quiz-montagem.webp',
     alt: 'Mulher a terminar uma cesta de presente com um laço',
     title: 'Depois, a cesta ganha forma',
     detail: 'Com um modelo para seguir, podes praticar a montagem e preparar fotografias para divulgar.'
@@ -169,6 +169,7 @@ let questionIndex = 0;
 let loadingTimer;
 let loadingMessageTimer;
 let answerTimer;
+let galleryCleanup = () => {};
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
@@ -179,7 +180,7 @@ function topbar(percent, backLabel) {
 }
 
 function renderIntro() {
-  app.innerHTML = `<div class="intro"><img class="brand" src="/4cc051cd6c3e688d.webp" alt="Sua Primeira Cesta Vendida" width="134" height="134"><img class="hero" src="/transformacao-cestas.png" alt="A mesma mulher antes, com poucas moedas, e depois, com dinheiro e uma cesta de presentes" width="1774" height="887"><p class="eyebrow">Quiz rápido</p><h1>Descobre o teu perfil para vender cestas de presente.</h1><p class="subhead">Responde a 10 perguntas e recebe um próximo passo de acordo com as tuas respostas.</p><button class="button" id="start" type="button">COMEÇAR O QUIZ</button><p class="note">Leva cerca de 2 minutos.</p></div>`;
+  app.innerHTML = `<div class="intro"><img class="brand" src="/4cc051cd6c3e688d.webp" alt="Sua Primeira Cesta Vendida" width="134" height="134"><img class="hero" src="/transformacao-cestas.webp" alt="A mesma mulher antes, com poucas moedas, e depois, com dinheiro e uma cesta de presentes" width="1280" height="640"><p class="eyebrow">Quiz rápido</p><h1>Descobre o teu perfil para vender cestas de presente.</h1><p class="subhead">Responde a 10 perguntas e recebe um próximo passo de acordo com as tuas respostas.</p><button class="button" id="start" type="button">COMEÇAR O QUIZ</button><p class="note">Leva cerca de 2 minutos.</p></div>`;
   document.getElementById('start').addEventListener('click', () => {screen = 'question'; questionIndex = 0; render();});
 }
 
@@ -187,7 +188,7 @@ function renderQuestion() {
   const question = questions[questionIndex];
   const percent = Math.round(((questionIndex + 1) / questions.length) * 100);
   const visual = visualSlots[questionIndex];
-  const visualHtml = visual ? `<figure class="visual-card"><button class="visual-toggle" type="button" aria-expanded="false" aria-controls="visual-note-${questionIndex}"><img src="${visual.src}" alt="${escapeHtml(visual.alt)}" width="1536" height="1024" loading="lazy"><span class="visual-overlay"><strong>${escapeHtml(visual.title)}</strong><span>Ver a ideia +</span></span></button><figcaption class="visual-note" id="visual-note-${questionIndex}" hidden>${escapeHtml(visual.detail)}</figcaption></figure>` : '';
+  const visualHtml = visual ? `<figure class="visual-card"><button class="visual-toggle" type="button" aria-expanded="false" aria-controls="visual-note-${questionIndex}"><img src="${visual.src}" alt="${escapeHtml(visual.alt)}" width="1280" height="853" loading="lazy"><span class="visual-overlay"><strong>${escapeHtml(visual.title)}</strong><span>Ver a ideia +</span></span></button><figcaption class="visual-note" id="visual-note-${questionIndex}" hidden>${escapeHtml(visual.detail)}</figcaption></figure>` : '';
   app.innerHTML = `${topbar(percent, 'Voltar')}<p class="counter">Pergunta ${questionIndex + 1} de ${questions.length}</p>${visualHtml}<h1>${escapeHtml(question.title)}</h1><div class="choices">${question.options.map((option, index) => `<button class="choice" type="button" data-answer="${index}">${escapeHtml(option)}</button>`).join('')}</div><p class="answer-feedback" role="status" hidden></p>`;
   if (visual) {
     const toggle = app.querySelector('.visual-toggle');
@@ -247,12 +248,13 @@ function checkout() {
 function renderResult() {
   const insights = questions.map((question, index) => `<div class="insight"><b>${index + 1}. ${escapeHtml(question.title)}</b><p>${escapeHtml(question.feedback[answers[index]])}</p></div>`).join('');
   const carouselImages = [
-    {src: '/exemplo-cesta-1.png', alt: 'Imagem ilustrativa de uma mulher com uma cesta de presente pronta'},
-    {src: '/exemplo-cesta-2.png', alt: 'Imagem ilustrativa de uma mulher com uma cesta de presente decorada'},
-    {src: '/exemplo-cesta-3.png', alt: 'Imagem ilustrativa de três cestas de presente prontas'}
+    {src: '/exemplo-cesta-1.webp', alt: 'Imagem ilustrativa de uma mulher com uma cesta de presente pronta'},
+    {src: '/exemplo-cesta-2.webp', alt: 'Imagem ilustrativa de uma mulher com uma cesta de presente decorada'},
+    {src: '/exemplo-cesta-3.webp', alt: 'Imagem ilustrativa de três cestas de presente prontas'}
   ];
-  const carouselHtml = `<section class="section basket-gallery" aria-labelledby="basket-gallery-title"><p class="eyebrow">Inspiração para começar</p><h2 id="basket-gallery-title">Olha como podem ficar as tuas cestas</h2><p class="gallery-disclosure">Imagens ilustrativas</p><div class="gallery-track" role="region" aria-label="Exemplos de cestas" tabindex="0">${carouselImages.map((item, index) => `<figure class="gallery-card"><img src="${item.src}" alt="${item.alt}" width="1122" height="1402" loading="lazy"><figcaption>Exemplo ${index + 1}</figcaption></figure>`).join('')}</div><div class="gallery-controls"><button class="gallery-arrow gallery-prev" type="button" aria-label="Imagem anterior">‹</button><span class="gallery-count" role="status" aria-live="polite">1 de ${carouselImages.length}</span><button class="gallery-arrow gallery-next" type="button" aria-label="Próxima imagem">›</button></div></section>`;
-  app.innerHTML = `<div class="result">${topbar(100, 'Voltar à última pergunta')}<div class="diagnosis"><p class="eyebrow">O teu diagnóstico está pronto</p><h1>Já tens um ponto de partida.</h1><p>${escapeHtml(diagnosis())} O curso Sua Primeira Cesta Vendida mostra os passos para transformar essa intenção num plano de ação.</p></div><section class="section" aria-labelledby="plan-title"><h2 id="plan-title">Um plano simples para começar</h2><div class="steps"><div class="step"><b>1</b><span>Escolhe os materiais e organiza o teu orçamento.</span></div><div class="step"><b>2</b><span>Monta uma das 3 cestas mostradas nas aulas.</span></div><div class="step"><b>3</b><span>Define o preço, fotografa e divulga pelo WhatsApp.</span></div></div></section><section class="section offer" aria-labelledby="offer-title"><p class="eyebrow">Acesso ao curso</p><h2 id="offer-title">Sua Primeira Cesta Vendida | Angola</h2><p class="price">4.990 <small>Kz</small></p><p class="subhead">Pagamento único. Sem mensalidade.</p><ul class="features"><li>5 passos em vídeo para começar</li><li>Montagem de 3 modelos de cestas</li><li>Orientação para definir preços e divulgar</li><li>Lista de compras, guiões de WhatsApp e plano de 7 dias</li></ul><button class="button buy" type="button">QUERO COMEÇAR AGORA</button><p class="note">Acesso após a confirmação do pagamento.</p></section><section class="section guarantee" aria-label="Garantia de 7 dias"><img src="/garantia-7-dias-sem-fundo.png" alt="Selo de garantia de 7 dias" width="100" height="100" loading="lazy"><div><h2>7 dias de garantia</h2><p>Experimenta o curso. Se não for para ti, pede o reembolso de 100% do valor dentro de 7 dias.</p></div></section>${carouselHtml}<section class="section insights" aria-labelledby="insights-title"><h2 id="insights-title">O que as tuas 10 respostas mostram</h2>${insights}</section><section class="section faq" aria-labelledby="faq-title"><h2 id="faq-title">Ainda tens dúvidas?</h2><details><summary>Preciso de experiência?</summary><p>Não. As aulas mostram como começar do zero e montar as cestas passo a passo.</p></details><details><summary>Posso acompanhar pelo telemóvel?</summary><p>Sim. Podes assistir às aulas ao teu ritmo no telemóvel ou computador.</p></details><details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, recebes acesso às aulas na área de membros.</p></details></section><p class="footer">© 2026 · Sua Primeira Cesta Vendida</p></div>`;
+  const carouselSlides = [carouselImages[carouselImages.length - 1], ...carouselImages, carouselImages[0]];
+  const carouselHtml = `<section class="section basket-gallery" aria-labelledby="basket-gallery-title"><p class="eyebrow">Inspiração para começar</p><h2 id="basket-gallery-title">Olha como podem ficar as tuas cestas</h2><p class="gallery-disclosure">Imagens ilustrativas</p><div class="gallery-track" role="region" aria-label="Cestas de presente" tabindex="0">${carouselSlides.map((item, index) => `<figure class="gallery-card"${index === 0 || index === carouselSlides.length - 1 ? ' aria-hidden="true"' : ''}><img src="${item.src}" alt="${index === 0 || index === carouselSlides.length - 1 ? '' : item.alt}" width="1122" height="1402" loading="lazy"></figure>`).join('')}</div><div class="gallery-controls"><button class="gallery-arrow gallery-prev" type="button" aria-label="Imagem anterior">‹</button><span class="gallery-count" role="status" aria-live="polite">1 de ${carouselImages.length}</span><button class="gallery-arrow gallery-next" type="button" aria-label="Próxima imagem">›</button></div></section>`;
+  app.innerHTML = `<div class="result">${topbar(100, 'Voltar à última pergunta')}<div class="diagnosis"><p class="eyebrow">O teu diagnóstico está pronto</p><h1>Já tens um ponto de partida.</h1><p>${escapeHtml(diagnosis())} O curso Sua Primeira Cesta Vendida mostra os passos para transformar essa intenção num plano de ação.</p></div><section class="section" aria-labelledby="plan-title"><h2 id="plan-title">Um plano simples para começar</h2><div class="steps"><div class="step"><b>1</b><span>Escolhe os materiais e organiza o teu orçamento.</span></div><div class="step"><b>2</b><span>Monta uma das 3 cestas mostradas nas aulas.</span></div><div class="step"><b>3</b><span>Define o preço, fotografa e divulga pelo WhatsApp.</span></div></div></section><section class="section offer" aria-labelledby="offer-title"><p class="eyebrow">Acesso ao curso</p><h2 id="offer-title">Sua Primeira Cesta Vendida | Angola</h2><p class="price">4.990 <small>Kz</small></p><p class="subhead">Pagamento único. Sem mensalidade.</p><ul class="features"><li>5 passos em vídeo para começar</li><li>Montagem de 3 modelos de cestas</li><li>Orientação para definir preços e divulgar</li><li>Lista de compras, guiões de WhatsApp e plano de 7 dias</li></ul><button class="button buy" type="button">QUERO COMEÇAR AGORA</button><p class="note">Acesso após a confirmação do pagamento.</p></section><section class="section guarantee" aria-label="Garantia de 7 dias"><img src="/garantia-7-dias-sem-fundo.webp" alt="Selo de garantia de 7 dias" width="100" height="100" loading="lazy"><div><h2>7 dias de garantia</h2><p>Experimenta o curso. Se não for para ti, pede o reembolso de 100% do valor dentro de 7 dias.</p></div></section>${carouselHtml}<section class="section insights" aria-labelledby="insights-title"><h2 id="insights-title">O que as tuas 10 respostas mostram</h2>${insights}</section><section class="section faq" aria-labelledby="faq-title"><h2 id="faq-title">Ainda tens dúvidas?</h2><details><summary>Preciso de experiência?</summary><p>Não. As aulas mostram como começar do zero e montar as cestas passo a passo.</p></details><details><summary>Posso acompanhar pelo telemóvel?</summary><p>Sim. Podes assistir às aulas ao teu ritmo no telemóvel ou computador.</p></details><details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, recebes acesso às aulas na área de membros.</p></details></section><p class="footer">© 2026 · Sua Primeira Cesta Vendida</p></div>`;
   app.querySelector('.back').addEventListener('click', () => {questionIndex = questions.length - 1; screen = 'question'; render();});
   app.querySelector('.buy').addEventListener('click', checkout);
   const gallery = app.querySelector('.gallery-track');
@@ -260,25 +262,80 @@ function renderResult() {
   const previous = app.querySelector('.gallery-prev');
   const next = app.querySelector('.gallery-next');
   const counter = app.querySelector('.gallery-count');
-  let activeCard = 0;
-  const updateGallery = () => {
+  const gallerySection = app.querySelector('.basket-gallery');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let activeCard = 1;
+  let autoTimer;
+  let settleTimer;
+  let inView = false;
+  let pointerHeld = false;
+  let hovering = false;
+  const cardPosition = index => cards[index].offsetLeft - (gallery.clientWidth - cards[index].clientWidth) / 2;
+  const updateCounter = () => {
+    const number = ((activeCard - 1 + carouselImages.length) % carouselImages.length) + 1;
+    counter.textContent = `${number} de ${carouselImages.length}`;
+  };
+  const nearestCard = () => {
     const center = gallery.scrollLeft + gallery.clientWidth / 2;
     activeCard = cards.reduce((best, card, index) => Math.abs(card.offsetLeft + card.offsetWidth / 2 - center) < Math.abs(cards[best].offsetLeft + cards[best].offsetWidth / 2 - center) ? index : best, 0);
-    counter.textContent = `${activeCard + 1} de ${cards.length}`;
-    previous.disabled = activeCard === 0;
-    next.disabled = activeCard === cards.length - 1;
+    updateCounter();
   };
-  const showCard = (index) => gallery.scrollTo({left: cards[index].offsetLeft - (gallery.clientWidth - cards[index].clientWidth) / 2, behavior: 'smooth'});
-  previous.addEventListener('click', () => showCard(Math.max(0, activeCard - 1)));
-  next.addEventListener('click', () => showCard(Math.min(cards.length - 1, activeCard + 1)));
-  gallery.addEventListener('scroll', updateGallery, {passive: true});
-  updateGallery();
+  const jumpTo = index => {
+    gallery.style.scrollSnapType = 'none';
+    gallery.scrollTo({left: cardPosition(index), behavior: 'auto'});
+    activeCard = index;
+    updateCounter();
+    requestAnimationFrame(() => { gallery.style.scrollSnapType = ''; });
+  };
+  const settle = () => {
+    nearestCard();
+    if (activeCard === 0) jumpTo(carouselImages.length);
+    if (activeCard === cards.length - 1) jumpTo(1);
+  };
+  const showCard = step => {
+    window.clearTimeout(settleTimer);
+    if (activeCard === 0 || activeCard === cards.length - 1) settle();
+    gallery.scrollTo({left: cardPosition(activeCard + step), behavior: reducedMotion.matches ? 'auto' : 'smooth'});
+    settleTimer = window.setTimeout(settle, reducedMotion.matches ? 50 : 650);
+  };
+  const stopAuto = () => window.clearInterval(autoTimer);
+  const startAuto = () => {
+    stopAuto();
+    if (inView && !document.hidden && !reducedMotion.matches && !pointerHeld && !hovering && !gallerySection.contains(document.activeElement)) {
+      autoTimer = window.setInterval(() => showCard(1), 3500);
+    }
+  };
+  previous.addEventListener('click', () => showCard(-1));
+  next.addEventListener('click', () => showCard(1));
+  gallery.addEventListener('scroll', nearestCard, {passive: true});
+  gallery.addEventListener('scrollend', settle);
+  gallerySection.addEventListener('pointerdown', () => {pointerHeld = true; stopAuto();});
+  gallerySection.addEventListener('pointerup', () => {pointerHeld = false; startAuto();});
+  gallerySection.addEventListener('pointercancel', () => {pointerHeld = false; startAuto();});
+  gallerySection.addEventListener('mouseenter', () => {hovering = true; stopAuto();});
+  gallerySection.addEventListener('mouseleave', () => {hovering = false; startAuto();});
+  gallerySection.addEventListener('focusin', stopAuto);
+  gallerySection.addEventListener('focusout', () => window.setTimeout(startAuto, 0));
+  document.addEventListener('visibilitychange', startAuto);
+  reducedMotion.addEventListener('change', startAuto);
+  const observer = new IntersectionObserver(([entry]) => {inView = entry.isIntersecting; startAuto();}, {threshold: 0.3});
+  observer.observe(gallerySection);
+  jumpTo(1);
+  galleryCleanup = () => {
+    stopAuto();
+    window.clearTimeout(settleTimer);
+    observer.disconnect();
+    document.removeEventListener('visibilitychange', startAuto);
+    reducedMotion.removeEventListener('change', startAuto);
+  };
 }
 
 function render() {
   window.clearTimeout(loadingTimer);
   window.clearInterval(loadingMessageTimer);
   window.clearTimeout(answerTimer);
+  galleryCleanup();
+  galleryCleanup = () => {};
   window.scrollTo(0, 0);
   if (screen === 'intro') renderIntro();
   else if (screen === 'question') renderQuestion();
