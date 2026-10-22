@@ -284,24 +284,40 @@ function firstName() {
   return String(answers[0] || '').trim().split(/\s+/)[0];
 }
 
+function personalizedPromise() {
+  const promises = [
+    [
+      'Aprende a montar a tua primeira cesta com uma lista clara de materiais.',
+      'Aprende a começar com um orçamento e um preço pensados antes de comprar.',
+      'Aprende a preparar a tua cesta e apresentá-la no WhatsApp.'
+    ],
+    [
+      'Organiza a montagem para fazer cestas com menos improviso.',
+      'Descobre como calcular preços antes da próxima encomenda.',
+      'Prepara uma divulgação mais clara para procurar a próxima venda.'
+    ],
+    [
+      'Padroniza a montagem para poupar tempo nas próximas cestas.',
+      'Revê os custos para entender melhor a margem de cada cesta.',
+      'Melhora a apresentação das tuas cestas para gerar mais conversas.'
+    ]
+  ];
+  return promises[answers[4]][answers[5]];
+}
+
 function resultSummary() {
   const startingPoint = [
     'Estás a começar do zero.',
     'Já começaste, mas queres vendas mais regulares.',
     'Já vendes e queres organizar melhor o negócio.'
   ][answers[4]];
-  const nextStep = [
-    'Escolhe um modelo e faz a lista de materiais.',
-    'Define um orçamento e calcula o preço antes de comprar.',
-    'Fotografa uma cesta e apresenta-a com uma mensagem clara.'
-  ][answers[5]];
   const routine = [
     'Faz uma tarefa curta por dia.',
     'Divide o tempo entre preparação e divulgação.',
     'Reserva blocos para montar, fotografar e atender.',
     'Cria uma rotina e acompanha os resultados.'
   ][answers[10]];
-  return `${startingPoint} ${nextStep} ${routine}`;
+  return `${startingPoint} ${routine}`;
 }
 
 function checkout() {
@@ -325,7 +341,7 @@ function renderResult() {
   ];
   const carouselSlides = [carouselImages[carouselImages.length - 1], ...carouselImages, carouselImages[0]];
   const carouselHtml = `<section class="section basket-gallery" aria-labelledby="basket-gallery-title"><p class="eyebrow">Inspiração para começar</p><h2 id="basket-gallery-title">Olha como podem ficar as tuas cestas</h2><p class="gallery-disclosure">Imagens ilustrativas</p><div class="gallery-track" role="region" aria-label="Cestas de presente" tabindex="0">${carouselSlides.map((item, index) => `<figure class="gallery-card"${index === 0 || index === carouselSlides.length - 1 ? ' aria-hidden="true"' : ''}><img src="${item.src}" alt="${index === 0 || index === carouselSlides.length - 1 ? '' : item.alt}" width="1122" height="1402" loading="lazy"></figure>`).join('')}</div><div class="gallery-controls"><button class="gallery-arrow gallery-prev" type="button" aria-label="Imagem anterior">‹</button><span class="gallery-count" role="status" aria-live="polite">1 de ${carouselImages.length}</span><button class="gallery-arrow gallery-next" type="button" aria-label="Próxima imagem">›</button></div></section>`;
-  app.innerHTML = `<div class="result">${topbar(100, 'Voltar à última pergunta')}${journeyHtml}<div class="diagnosis"><p class="eyebrow">O teu ponto de partida</p><h1>${escapeHtml(firstName())}, já tens um caminho para começar.</h1><p>${escapeHtml(resultSummary())}</p></div><section class="section" aria-labelledby="plan-title"><h2 id="plan-title">Um plano simples para começar</h2><div class="steps"><div class="step"><b>1</b><span>Escolhe os materiais e organiza o teu orçamento.</span></div><div class="step"><b>2</b><span>Monta uma das 3 cestas mostradas nas aulas.</span></div><div class="step"><b>3</b><span>Define o preço, fotografa e divulga pelo WhatsApp.</span></div></div></section>${carouselHtml}<section class="section offer" aria-labelledby="offer-title"><p class="eyebrow">Acesso ao curso</p><h2 id="offer-title">Sua Primeira Cesta Vendida | Angola</h2><p class="old-price"><s>17.990 Kz</s></p><p class="price">4.990 <small>Kz</small></p><p class="subhead">Pagamento único. Sem mensalidade.</p><ul class="features"><li>5 passos em vídeo para começar</li><li>Montagem de 3 modelos de cestas</li><li>Orientação para definir preços e divulgar</li><li>Lista de compras, guiões de WhatsApp e plano de 7 dias</li></ul><button class="button buy" type="button">QUERO COMEÇAR AGORA</button><p class="note">Acesso após a confirmação do pagamento.</p></section><section class="section guarantee" aria-label="Garantia de 7 dias"><img src="/garantia-7-dias-sem-fundo.webp" alt="Selo de garantia de 7 dias" width="100" height="100" loading="lazy"><div><h2>7 dias de garantia</h2><p>Experimenta o curso. Se não for para ti, pede o reembolso de 100% do valor dentro de 7 dias.</p></div></section><section class="section faq" aria-labelledby="faq-title"><h2 id="faq-title">Ainda tens dúvidas?</h2><details><summary>Preciso de experiência?</summary><p>Não. As aulas mostram como começar do zero e montar as cestas passo a passo.</p></details><details><summary>Posso acompanhar pelo telemóvel?</summary><p>Sim. Podes assistir às aulas ao teu ritmo no telemóvel ou computador.</p></details><details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, recebes acesso às aulas na área de membros.</p></details></section><p class="footer">© 2026 · Sua Primeira Cesta Vendida</p></div>`;
+  app.innerHTML = `<div class="result">${topbar(100, 'Voltar à última pergunta')}${journeyHtml}<div class="diagnosis"><p class="eyebrow">O teu plano, ${escapeHtml(firstName())}</p><h1>${escapeHtml(personalizedPromise())}</h1><p>${escapeHtml(resultSummary())}</p></div><section class="section" aria-labelledby="plan-title"><h2 id="plan-title">Um plano simples para começar</h2><div class="steps"><div class="step"><b>1</b><span>Escolhe os materiais e organiza o teu orçamento.</span></div><div class="step"><b>2</b><span>Monta uma das 3 cestas mostradas nas aulas.</span></div><div class="step"><b>3</b><span>Define o preço, fotografa e divulga pelo WhatsApp.</span></div></div></section>${carouselHtml}<section class="section offer" aria-labelledby="offer-title"><figure class="offer-mockup"><img src="/curso-cestas-mockup.webp" alt="Representação ilustrativa de aulas em vídeo, materiais de apoio digitais e três modelos de cestas" width="1280" height="960" loading="lazy"><figcaption>Visual ilustrativo do curso e materiais digitais</figcaption></figure><p class="eyebrow">Acesso ao curso</p><h2 id="offer-title">Sua Primeira Cesta Vendida | Angola</h2><p class="old-price"><s>17.990 Kz</s></p><p class="price">4.990 <small>Kz</small></p><p class="subhead">Pagamento único. Sem mensalidade.</p><ul class="features"><li>5 passos em vídeo para começar</li><li>Montagem de 3 modelos de cestas</li><li>Orientação para definir preços e divulgar</li><li>Lista de compras, guiões de WhatsApp e plano de 7 dias</li></ul><button class="button buy" type="button">QUERO COMEÇAR AGORA</button><p class="note">Acesso após a confirmação do pagamento.</p></section><section class="section guarantee" aria-label="Garantia de 7 dias"><img src="/garantia-7-dias-sem-fundo.webp" alt="Selo de garantia de 7 dias" width="100" height="100" loading="lazy"><div><h2>7 dias de garantia</h2><p>Experimenta o curso. Se não for para ti, pede o reembolso de 100% do valor dentro de 7 dias.</p></div></section><section class="section faq" aria-labelledby="faq-title"><h2 id="faq-title">Ainda tens dúvidas?</h2><details><summary>Preciso de experiência?</summary><p>Não. As aulas mostram como começar do zero e montar as cestas passo a passo.</p></details><details><summary>Posso acompanhar pelo telemóvel?</summary><p>Sim. Podes assistir às aulas ao teu ritmo no telemóvel ou computador.</p></details><details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, recebes acesso às aulas na área de membros.</p></details></section><p class="footer">© 2026 · Sua Primeira Cesta Vendida</p></div>`;
   app.querySelector('.back').addEventListener('click', () => {questionIndex = questions.length - 1; screen = 'question'; render();});
   app.querySelector('.buy').addEventListener('click', checkout);
   const journeyButtons = [...app.querySelectorAll('.journey-day')];

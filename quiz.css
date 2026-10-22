@@ -85,6 +85,9 @@ p{margin:0}
 .step b{display:grid;place-items:center;flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:#ff9500;color:white;font-size:13px}
 .step span{font-size:14px}
 .offer{padding:22px;border:1px solid #ffd49a;border-radius:20px;box-shadow:0 8px 32px #ff95000a}
+.offer-mockup{margin:-22px -22px 20px;overflow:hidden;border-radius:19px 19px 12px 12px;background:#fff8ed}
+.offer-mockup img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.offer-mockup figcaption{padding:8px 14px;color:#69737e;font-size:11px;text-align:center}
 .offer h2{margin-bottom:8px}
 .old-price{margin:8px 0 0;color:#c62828;font-size:20px;font-weight:750}
 .old-price s{text-decoration-thickness:2px;text-decoration-color:#c62828}
