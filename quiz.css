@@ -40,6 +40,12 @@ p{margin:0}
 .choice:hover,.choice.selected{border-color:#ff9500;background:#fff8ed;transform:translateY(-2px);box-shadow:0 8px 18px #a85e0020}
 .choice:disabled{cursor:default}
 .answer-feedback{margin-top:18px;padding:14px 16px;border-radius:14px;background:#fff8ed;border:1px solid #ffdfad;color:#6e4207;font-size:14px;font-weight:650}
+.name-form{display:grid;gap:12px;margin-top:22px}
+.name-form label{font-size:14px;font-weight:750}
+.name-form input{width:100%;min-height:58px;padding:14px 16px;border:1px solid #d9dde2;border-radius:14px;background:#fff;color:#17202c;font:inherit;font-size:17px}
+.name-form input:focus-visible{outline:3px solid #ff9500;outline-offset:2px}
+.name-form .button{margin-top:8px}
+.name-error{color:#b9232e;font-size:13px;font-weight:650}
 .loading{text-align:center;padding-top:28vh}
 .spinner{width:52px;height:52px;margin:0 auto 22px;border:5px solid #ffedd1;border-top-color:#ff9500;border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -80,7 +86,9 @@ p{margin:0}
 .step span{font-size:14px}
 .offer{padding:22px;border:1px solid #ffd49a;border-radius:20px;box-shadow:0 8px 32px #ff95000a}
 .offer h2{margin-bottom:8px}
-.price{font-size:42px;line-height:1.1;font-weight:850;letter-spacing:-.04em;margin:6px 0 2px}
+.old-price{margin:8px 0 0;color:#c62828;font-size:20px;font-weight:750}
+.old-price s{text-decoration-thickness:2px;text-decoration-color:#c62828}
+.price{font-size:42px;line-height:1.1;font-weight:850;letter-spacing:-.04em;margin:2px 0 2px;color:#12853a}
 .price small{font-size:20px;letter-spacing:0}
 .features{padding:0;margin:18px 0 22px;list-style:none;display:grid;gap:11px}
 .features li{display:flex;gap:9px;align-items:flex-start;font-size:14px}

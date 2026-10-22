@@ -1,6 +1,6 @@
 # Sua Primeira Cesta Vendida — Angola
 
-Quiz estático com três perguntas básicas iniciais e dez perguntas de diagnóstico, resposta adaptada a cada escolha, resultado com plano visual interativo de 7 dias e oferta final. O gráfico mostra tarefas sugeridas, não uma previsão de vendas. A copy está adaptada para Angola. Preço da oferta: **4.990 Kz**.
+Quiz estático que começa pelo primeiro nome, segue com três perguntas básicas e dez perguntas de diagnóstico, resposta adaptada a cada escolha, resultado com plano visual interativo de 7 dias e oferta final. O nome é usado apenas nesta sessão para personalizar o resultado. O gráfico mostra tarefas sugeridas, não uma previsão de vendas. A copy está adaptada para Angola. O cartão da oferta apresenta **17.990 Kz** riscado e o preço atual de **4.990 Kz**.
 
 ## Executar
 
