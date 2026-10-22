@@ -1,6 +1,37 @@
 const CHECKOUT_URL = 'https://pay.clickpayon.com/94f51905-70c4-4a57-988a-28e39dec83f0';
 const questions = [
   {
+    title: 'Qual é a tua faixa etária?',
+    options: ['Até 24 anos.', '25 a 34 anos.', '35 a 44 anos.', '45 anos ou mais.', 'Prefiro não responder.'],
+    feedback: [
+      'Podes começar com uma cesta simples e aprender o processo ao teu ritmo.',
+      'Um primeiro teste pequeno pode caber na tua rotina atual.',
+      'Podes usar o que já conheces dos gostos das pessoas à tua volta para escolher uma cesta.',
+      'Um modelo guiado ajuda a praticar cada etapa ao teu ritmo.',
+      'Tudo bem. A idade não é necessária para receber o teu próximo passo.'
+    ]
+  },
+  {
+    title: 'Como te identificas?',
+    options: ['Mulher.', 'Homem.', 'Outra identidade.', 'Prefiro não responder.'],
+    feedback: [
+      'Obrigado pela resposta. Vamos descobrir o teu ponto de partida para montar cestas.',
+      'Obrigado pela resposta. Vamos descobrir o teu ponto de partida para montar cestas.',
+      'Obrigado pela resposta. Vamos descobrir o teu ponto de partida para montar cestas.',
+      'Tudo bem. Podes continuar sem informar o teu género.'
+    ]
+  },
+  {
+    title: 'Onde vives atualmente?',
+    options: ['Em Luanda.', 'Noutra província de Angola.', 'Fora de Angola.', 'Prefiro não responder.'],
+    feedback: [
+      'Em Luanda, podes começar por comparar preços dos materiais perto de ti.',
+      'Na tua província, vale pesquisar fornecedores locais antes de comprar.',
+      'Podes adaptar materiais, preços e formas de pagamento ao lugar onde vives.',
+      'Tudo bem. Podes seguir o quiz sem informar a tua localização.'
+    ]
+  },
+  {
     title: 'Em que ponto estás com a venda de cestas de presente?',
     options: [
       'Nunca vendi e quero começar do zero.',
@@ -148,13 +179,13 @@ const questions = [
 
 // Troca o ficheiro src de cada espaço para actualizar as imagens do quiz.
 const visualSlots = {
-  3: {
+  6: {
     src: '/quiz-planeamento.webp',
     alt: 'Mulher a planear os materiais para montar uma cesta de presente',
     title: 'Primeiro, um plano simples',
     detail: 'Escolher os materiais e conhecer os custos ajuda a dar o primeiro passo com mais clareza.'
   },
-  7: {
+  10: {
     src: '/quiz-montagem.webp',
     alt: 'Mulher a terminar uma cesta de presente com um laço',
     title: 'Depois, a cesta ganha forma',
@@ -180,7 +211,7 @@ function topbar(percent, backLabel) {
 }
 
 function renderIntro() {
-  app.innerHTML = `<div class="intro"><img class="brand" src="/4cc051cd6c3e688d.webp" alt="Sua Primeira Cesta Vendida" width="134" height="134"><img class="hero" src="/transformacao-cestas.webp" alt="A mesma mulher antes, com poucas moedas, e depois, com dinheiro e uma cesta de presentes" width="1280" height="640"><p class="eyebrow">Quiz rápido</p><h1>Descobre o teu perfil para vender cestas de presente.</h1><p class="subhead">Responde a 10 perguntas e recebe um próximo passo de acordo com as tuas respostas.</p><button class="button" id="start" type="button">COMEÇAR O QUIZ</button><p class="note">Leva cerca de 2 minutos.</p></div>`;
+  app.innerHTML = `<div class="intro"><img class="brand" src="/4cc051cd6c3e688d.webp" alt="Sua Primeira Cesta Vendida" width="134" height="134"><img class="hero" src="/transformacao-cestas.webp" alt="A mesma mulher antes, com poucas moedas, e depois, com dinheiro e uma cesta de presentes" width="1280" height="640"><p class="eyebrow">Quiz rápido</p><h1>Descobre o teu perfil para vender cestas de presente.</h1><p class="subhead">Responde a perguntas rápidas e recebe um próximo passo de acordo com as tuas respostas.</p><button class="button" id="start" type="button">COMEÇAR O QUIZ</button><p class="note">Leva cerca de 3 minutos.</p></div>`;
   document.getElementById('start').addEventListener('click', () => {screen = 'question'; questionIndex = 0; render();});
 }
 
@@ -189,7 +220,7 @@ function renderQuestion() {
   const percent = Math.round(((questionIndex + 1) / questions.length) * 100);
   const visual = visualSlots[questionIndex];
   const visualHtml = visual ? `<figure class="visual-card"><button class="visual-toggle" type="button" aria-expanded="false" aria-controls="visual-note-${questionIndex}"><img src="${visual.src}" alt="${escapeHtml(visual.alt)}" width="1280" height="853" loading="lazy"><span class="visual-overlay"><strong>${escapeHtml(visual.title)}</strong><span>Ver a ideia +</span></span></button><figcaption class="visual-note" id="visual-note-${questionIndex}" hidden>${escapeHtml(visual.detail)}</figcaption></figure>` : '';
-  app.innerHTML = `${topbar(percent, 'Voltar')}<p class="counter">Pergunta ${questionIndex + 1} de ${questions.length}</p>${visualHtml}<h1>${escapeHtml(question.title)}</h1><div class="choices">${question.options.map((option, index) => `<button class="choice" type="button" data-answer="${index}">${escapeHtml(option)}</button>`).join('')}</div><p class="answer-feedback" role="status" hidden></p>`;
+  app.innerHTML = `${topbar(percent, 'Voltar')}${visualHtml}<h1>${escapeHtml(question.title)}</h1><div class="choices">${question.options.map((option, index) => `<button class="choice" type="button" data-answer="${index}">${escapeHtml(option)}</button>`).join('')}</div><p class="answer-feedback" role="status" hidden></p>`;
   if (visual) {
     const toggle = app.querySelector('.visual-toggle');
     const note = app.querySelector('.visual-note');
@@ -232,11 +263,24 @@ function renderLoading() {
   loadingTimer = window.setTimeout(() => {window.clearInterval(loadingMessageTimer); screen = 'result'; render();}, 3000);
 }
 
-function diagnosis() {
-  const problem = answers[1];
-  if (problem === 0) return 'O teu principal desafio é saber o que comprar e como montar as primeiras cestas.';
-  if (problem === 1) return 'O teu principal desafio é começar com um orçamento claro e definir preços antes de vender.';
-  return 'O teu principal desafio é divulgar as cestas e iniciar conversas com possíveis clientes.';
+function resultSummary() {
+  const startingPoint = [
+    'Estás a começar do zero.',
+    'Já começaste, mas queres vendas mais regulares.',
+    'Já vendes e queres organizar melhor o negócio.'
+  ][answers[3]];
+  const nextStep = [
+    'Escolhe um modelo e faz a lista de materiais.',
+    'Define um orçamento e calcula o preço antes de comprar.',
+    'Fotografa uma cesta e apresenta-a com uma mensagem clara.'
+  ][answers[4]];
+  const routine = [
+    'Faz uma tarefa curta por dia.',
+    'Divide o tempo entre preparação e divulgação.',
+    'Reserva blocos para montar, fotografar e atender.',
+    'Cria uma rotina e acompanha os resultados.'
+  ][answers[9]];
+  return `${startingPoint} ${nextStep} ${routine}`;
 }
 
 function checkout() {
@@ -246,7 +290,6 @@ function checkout() {
 }
 
 function renderResult() {
-  const insights = questions.map((question, index) => `<div class="insight"><b>${index + 1}. ${escapeHtml(question.title)}</b><p>${escapeHtml(question.feedback[answers[index]])}</p></div>`).join('');
   const carouselImages = [
     {src: '/exemplo-cesta-1.webp', alt: 'Imagem ilustrativa de uma mulher com uma cesta de presente pronta'},
     {src: '/exemplo-cesta-2.webp', alt: 'Imagem ilustrativa de uma mulher com uma cesta de presente decorada'},
@@ -254,7 +297,7 @@ function renderResult() {
   ];
   const carouselSlides = [carouselImages[carouselImages.length - 1], ...carouselImages, carouselImages[0]];
   const carouselHtml = `<section class="section basket-gallery" aria-labelledby="basket-gallery-title"><p class="eyebrow">Inspiração para começar</p><h2 id="basket-gallery-title">Olha como podem ficar as tuas cestas</h2><p class="gallery-disclosure">Imagens ilustrativas</p><div class="gallery-track" role="region" aria-label="Cestas de presente" tabindex="0">${carouselSlides.map((item, index) => `<figure class="gallery-card"${index === 0 || index === carouselSlides.length - 1 ? ' aria-hidden="true"' : ''}><img src="${item.src}" alt="${index === 0 || index === carouselSlides.length - 1 ? '' : item.alt}" width="1122" height="1402" loading="lazy"></figure>`).join('')}</div><div class="gallery-controls"><button class="gallery-arrow gallery-prev" type="button" aria-label="Imagem anterior">‹</button><span class="gallery-count" role="status" aria-live="polite">1 de ${carouselImages.length}</span><button class="gallery-arrow gallery-next" type="button" aria-label="Próxima imagem">›</button></div></section>`;
-  app.innerHTML = `<div class="result">${topbar(100, 'Voltar à última pergunta')}<div class="diagnosis"><p class="eyebrow">O teu diagnóstico está pronto</p><h1>Já tens um ponto de partida.</h1><p>${escapeHtml(diagnosis())} O curso Sua Primeira Cesta Vendida mostra os passos para transformar essa intenção num plano de ação.</p></div><section class="section" aria-labelledby="plan-title"><h2 id="plan-title">Um plano simples para começar</h2><div class="steps"><div class="step"><b>1</b><span>Escolhe os materiais e organiza o teu orçamento.</span></div><div class="step"><b>2</b><span>Monta uma das 3 cestas mostradas nas aulas.</span></div><div class="step"><b>3</b><span>Define o preço, fotografa e divulga pelo WhatsApp.</span></div></div></section><section class="section offer" aria-labelledby="offer-title"><p class="eyebrow">Acesso ao curso</p><h2 id="offer-title">Sua Primeira Cesta Vendida | Angola</h2><p class="price">4.990 <small>Kz</small></p><p class="subhead">Pagamento único. Sem mensalidade.</p><ul class="features"><li>5 passos em vídeo para começar</li><li>Montagem de 3 modelos de cestas</li><li>Orientação para definir preços e divulgar</li><li>Lista de compras, guiões de WhatsApp e plano de 7 dias</li></ul><button class="button buy" type="button">QUERO COMEÇAR AGORA</button><p class="note">Acesso após a confirmação do pagamento.</p></section><section class="section guarantee" aria-label="Garantia de 7 dias"><img src="/garantia-7-dias-sem-fundo.webp" alt="Selo de garantia de 7 dias" width="100" height="100" loading="lazy"><div><h2>7 dias de garantia</h2><p>Experimenta o curso. Se não for para ti, pede o reembolso de 100% do valor dentro de 7 dias.</p></div></section>${carouselHtml}<section class="section insights" aria-labelledby="insights-title"><h2 id="insights-title">O que as tuas 10 respostas mostram</h2>${insights}</section><section class="section faq" aria-labelledby="faq-title"><h2 id="faq-title">Ainda tens dúvidas?</h2><details><summary>Preciso de experiência?</summary><p>Não. As aulas mostram como começar do zero e montar as cestas passo a passo.</p></details><details><summary>Posso acompanhar pelo telemóvel?</summary><p>Sim. Podes assistir às aulas ao teu ritmo no telemóvel ou computador.</p></details><details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, recebes acesso às aulas na área de membros.</p></details></section><p class="footer">© 2026 · Sua Primeira Cesta Vendida</p></div>`;
+  app.innerHTML = `<div class="result">${topbar(100, 'Voltar à última pergunta')}<div class="diagnosis"><p class="eyebrow">O teu diagnóstico está pronto</p><h1>Já tens um ponto de partida.</h1><p>${escapeHtml(resultSummary())}</p></div><section class="section" aria-labelledby="plan-title"><h2 id="plan-title">Um plano simples para começar</h2><div class="steps"><div class="step"><b>1</b><span>Escolhe os materiais e organiza o teu orçamento.</span></div><div class="step"><b>2</b><span>Monta uma das 3 cestas mostradas nas aulas.</span></div><div class="step"><b>3</b><span>Define o preço, fotografa e divulga pelo WhatsApp.</span></div></div></section><section class="section offer" aria-labelledby="offer-title"><p class="eyebrow">Acesso ao curso</p><h2 id="offer-title">Sua Primeira Cesta Vendida | Angola</h2><p class="price">4.990 <small>Kz</small></p><p class="subhead">Pagamento único. Sem mensalidade.</p><ul class="features"><li>5 passos em vídeo para começar</li><li>Montagem de 3 modelos de cestas</li><li>Orientação para definir preços e divulgar</li><li>Lista de compras, guiões de WhatsApp e plano de 7 dias</li></ul><button class="button buy" type="button">QUERO COMEÇAR AGORA</button><p class="note">Acesso após a confirmação do pagamento.</p></section><section class="section guarantee" aria-label="Garantia de 7 dias"><img src="/garantia-7-dias-sem-fundo.webp" alt="Selo de garantia de 7 dias" width="100" height="100" loading="lazy"><div><h2>7 dias de garantia</h2><p>Experimenta o curso. Se não for para ti, pede o reembolso de 100% do valor dentro de 7 dias.</p></div></section>${carouselHtml}<section class="section faq" aria-labelledby="faq-title"><h2 id="faq-title">Ainda tens dúvidas?</h2><details><summary>Preciso de experiência?</summary><p>Não. As aulas mostram como começar do zero e montar as cestas passo a passo.</p></details><details><summary>Posso acompanhar pelo telemóvel?</summary><p>Sim. Podes assistir às aulas ao teu ritmo no telemóvel ou computador.</p></details><details><summary>Como recebo o acesso?</summary><p>Após a confirmação do pagamento, recebes acesso às aulas na área de membros.</p></details></section><p class="footer">© 2026 · Sua Primeira Cesta Vendida</p></div>`;
   app.querySelector('.back').addEventListener('click', () => {questionIndex = questions.length - 1; screen = 'question'; render();});
   app.querySelector('.buy').addEventListener('click', checkout);
   const gallery = app.querySelector('.gallery-track');

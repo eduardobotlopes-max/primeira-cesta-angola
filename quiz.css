@@ -26,7 +26,6 @@ p{margin:0}
 .progress span:after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 20%,#ffffff70 50%,transparent 80%);animation:progress-shine 2.2s linear infinite}
 .progress-value{min-width:36px;text-align:right;color:#9d5900;font-size:12px;font-weight:800}
 @keyframes progress-shine{from{transform:translateX(-110%)}to{transform:translateX(110%)}}
-.counter{color:#8a5100;font-size:13px;font-weight:750;margin:0 0 8px}
 .visual-card{margin:8px 0 22px;border:1px solid #ffe1b4;border-radius:18px;overflow:hidden;background:#fff8ed;box-shadow:0 10px 26px #60390016;animation:screen-in .35s ease both}
 .visual-toggle{display:block;position:relative;width:100%;padding:0;border:0;background:#fff;text-align:left;color:#fff;overflow:hidden}
 .visual-toggle:focus-visible{outline:3px solid #17202c;outline-offset:-3px}
@@ -79,11 +78,6 @@ p{margin:0}
 .gallery-arrow:disabled{opacity:.35;cursor:default}
 .gallery-arrow:focus-visible,.gallery-track:focus-visible{outline:3px solid #17202c;outline-offset:2px}
 .gallery-count{min-width:50px;text-align:center;color:#6e4207;font-size:13px;font-weight:750}
-.insights{display:grid;gap:10px}
-.insights h2{margin-bottom:4px}
-.insight{padding:13px 14px;border:1px solid #eee;border-radius:13px}
-.insight b{display:block;font-size:13px;line-height:1.4}
-.insight p{margin-top:5px;color:#67717b;font-size:13px}
 .faq details{padding:14px 0;border-bottom:1px solid #eee}
 .faq summary{cursor:pointer;font-weight:650;font-size:14px}
 .faq details p{margin-top:9px;color:#67717b;font-size:13px}
