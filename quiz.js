@@ -1,4 +1,4 @@
-const CHECKOUT_URL = 'https://pay.clickpayon.com/94f51905-70c4-4a57-988a-28e39dec83f0';
+const CHECKOUT_URL = 'https://mentora.ao/produto/fd8d1595-ee77-47fb-8d62-6aac9676c1e6';
 const questions = [
   {title: 'Como te chamas?', type: 'name'},
   {
