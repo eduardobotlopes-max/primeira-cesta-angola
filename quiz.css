@@ -120,3 +120,13 @@ p{margin:0}
 .faq details img{display:block;max-width:100%;height:auto;margin-top:12px;border-radius:12px}
 .footer{text-align:center;font-size:11px;color:#9298a0;margin-top:30px}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Illustrative WhatsApp conversation carousel. Shown only after all three assets load. */
+.social-examples{padding:20px 0 16px;border:1px solid #ffe1b4;border-radius:20px;background:#fff8ed;overflow:hidden}
+.social-examples[hidden]{display:none}
+.social-examples>.eyebrow,.social-examples>h2,.social-disclosure{margin-left:18px;margin-right:18px}
+.social-examples h2{margin-bottom:14px}
+.social-example-track{display:flex;gap:12px;padding:3px 10% 14px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-width:thin}
+.social-example-card{flex:0 0 88%;margin:0;scroll-snap-align:center;border:1px solid #e7ded1;border-radius:14px;overflow:hidden;background:white;box-shadow:0 6px 18px #17202c12}
+.social-example-card img{display:block;width:100%;height:auto}
+.social-disclosure{font-size:11px;line-height:1.5;color:#775421;margin-top:5px}
