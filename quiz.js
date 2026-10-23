@@ -250,16 +250,9 @@ function renderQuestion() {
   });
   app.querySelectorAll('.choice').forEach(button => button.addEventListener('click', () => {
     answers[questionIndex] = Number(button.dataset.answer);
-    app.querySelectorAll('.choice').forEach(choice => choice.disabled = true);
-    button.classList.add('selected');
-    const feedback = app.querySelector('.answer-feedback');
-    feedback.textContent = question.feedback[answers[questionIndex]];
-    feedback.hidden = false;
-    answerTimer = window.setTimeout(() => {
-      if (questionIndex === questions.length - 1) screen = 'loading';
-      else questionIndex += 1;
-      render();
-    }, 1300);
+    if (questionIndex === questions.length - 1) screen = 'loading';
+    else questionIndex += 1;
+    render();
   }));
 }
 
