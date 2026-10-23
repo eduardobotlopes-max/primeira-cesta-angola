@@ -211,7 +211,7 @@ function topbar(percent, backLabel) {
 }
 
 function renderIntro() {
-  app.innerHTML = `<div class="intro"><img class="brand" src="/4cc051cd6c3e688d.webp" alt="Sua Primeira Cesta Vendida" width="134" height="134"><img class="hero" src="/transformacao-cestas.webp" alt="A mesma mulher antes, com poucas moedas, e depois, com dinheiro e uma cesta de presentes" width="1280" height="640"><p class="eyebrow">Quiz rápido</p><h1>Descobre o teu perfil para vender cestas de presente.</h1><p class="subhead">Responde a perguntas rápidas e recebe um próximo passo de acordo com as tuas respostas.</p><button class="button" id="start" type="button">COMEÇAR O QUIZ</button><p class="note">Leva cerca de 3 minutos.</p></div>`;
+  app.innerHTML = `<div class="intro"><img class="brand" src="/4cc051cd6c3e688d.webp" alt="Sua Primeira Cesta Vendida" width="134" height="134"><img class="hero" src="/transformacao-cestas.webp" alt="A mesma mulher antes, com poucas moedas, e depois, com dinheiro e uma cesta de presentes" width="1280" height="640"><p class="eyebrow">Quiz rápido</p><h1>Descobre o teu perfil para vender cestas de presente.</h1><p class="subhead">Estas perguntas vão mostrar se tens o perfil certo para aprender a montar cestas de presente na tua própria cozinha e faturar de <strong>35.000 a 100.000 Kz por venda</strong>, mesmo começando do zero.</p><button class="button" id="start" type="button">COMEÇAR O QUIZ</button><p class="note">Leva cerca de 3 minutos.</p></div>`;
   document.getElementById('start').addEventListener('click', () => {screen = 'question'; questionIndex = 0; render();});
 }
 
