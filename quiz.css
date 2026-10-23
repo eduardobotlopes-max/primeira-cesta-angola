@@ -131,6 +131,9 @@ p{margin:0}
 .social-example-card img{display:block;width:100%;height:auto}
 .social-disclosure{font-size:11px;line-height:1.5;color:#775421;margin-top:5px}
 
-/* Destaque verde e compacto na abertura do quiz */
-.intro .intro-promise{color:#343c46;font-size:14px;font-weight:500;line-height:1.42;max-width:410px;margin:0 auto 20px}
-.intro .intro-promise strong{color:#08752f;font-weight:850}
+/* Título principal: tipografia forte e destaques da referência */
+.intro .intro-kicker{max-width:390px;margin:0 auto 11px;color:#222a35;font-size:15px;line-height:1.38;font-style:italic}
+.intro .intro-kicker span{color:#f58c00;font-weight:800}
+.intro .intro-headline{max-width:480px;margin:0 auto 19px;color:#141b26;font-size:clamp(28px,7.25vw,34px);font-weight:850;line-height:1.13;letter-spacing:-.035em;text-wrap:balance}
+.intro .intro-orange{color:#f58c00}
+.intro .intro-green{color:#0d9d4b}
