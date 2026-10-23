@@ -14,9 +14,8 @@ const questions = [
   },
   {
     title: 'Como te identificas?',
-    options: ['Mulher.', 'Homem.', 'Outra identidade.', 'Prefiro não responder.'],
+    options: ['Mulher.', 'Homem.', 'Prefiro não responder.'],
     feedback: [
-      'Obrigado pela resposta. Vamos descobrir o teu ponto de partida para montar cestas.',
       'Obrigado pela resposta. Vamos descobrir o teu ponto de partida para montar cestas.',
       'Obrigado pela resposta. Vamos descobrir o teu ponto de partida para montar cestas.',
       'Tudo bem. Podes continuar sem informar o teu género.'
