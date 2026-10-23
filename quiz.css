@@ -130,3 +130,7 @@ p{margin:0}
 .social-example-card{flex:0 0 88%;margin:0;scroll-snap-align:center;border:1px solid #e7ded1;border-radius:14px;overflow:hidden;background:white;box-shadow:0 6px 18px #17202c12}
 .social-example-card img{display:block;width:100%;height:auto}
 .social-disclosure{font-size:11px;line-height:1.5;color:#775421;margin-top:5px}
+
+/* Destaque verde e compacto na abertura do quiz */
+.intro .intro-promise{color:#14833b;font-size:14px;font-weight:650;line-height:1.42;max-width:410px;margin:0 auto 20px}
+.intro .intro-promise strong{color:#08752f;font-weight:850}
